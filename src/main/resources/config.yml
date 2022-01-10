@@ -1,0 +1,69 @@
+# Settings for messages that may be sent to users.
+messages:
+  # The prefix in front of all messages.
+  prefix: "&9&lDWC &8&l» &7"
+  # Shown after /dwc reload.
+  reload: "Plugin configuration reloaded.\n&7 &c&n&oNote:&7&o New commands will be registered, but can't tab complete until a server restart."
+  # Shown when the player tries to use a command but is on cooldown.
+  cooldown: "Sorry, you can't use that command. Time left: &f%cooldown%&7."
+  # Shown when an error occurs while executing the webhook.
+  error: "There was an error while executing the webhook for &f%webhook%&7. Contact an admin to check console."
+
+# Words that get removed from content the user tries to post. Supports Regex.
+content-filter:
+  - '@'
+  - '#'
+  - '"'
+  # Some random filter for the N-Word I came up with as an example
+  - '(?i)\bn[i!1]+[gq6b]{2,}[a4@e€3]*[r]*'
+
+# Settings for custom commands.
+commands:
+  # The command that will be registered
+  # (In this case, /feedback)
+  feedback:
+    command-settings:
+      # The permission to use the command, optional.
+      permission: "feedback.use"
+      # The message that the user receives if he does not have permission.
+      # Remove or set to "" to send none.
+      permission-message: "&cSorry, but you are not allowed to post feedbacks."
+      # The amount of arguments required. Arguments are split by a space.
+      # i.E. /feedback argument1 argument2 argument3 argument4
+      required-arguments: 4
+      # The usage of the command, will be shown if there are less arguments than required.
+      usage: "&7Please use &f/feedback <Descriptive feedback sentence>&7."
+      # The delay in seconds between allowed command executions. Console will always bypass this.
+      cooldown: 120
+      # The message the user receives after the webhook has been executed without errors.
+      response: "&9&lFeedback &8&l» &7Your feedback has been sent to discord! Thank you!"
+    webhook-settings:
+      # The URL of the webhook to send to. If empty or missing, nothing happens. Wow.
+      webhook-url: ""
+      # The Avatar URL of the message.
+      # Placeholders:
+      #   %player_name% - The name of the player (CONSOLE for console)
+      #   %player_uuid% - The UUID of the player (00000000-0000-0000-0000-000000000000 for console)
+      webhook-avatar: "http://cravatar.eu/head/%player_name%/128.png"
+      # The username of the webhook. Same placeholders possible as above.
+      webhook-name: "%player_name%'s Feedback"
+      # Embeds of the message.
+      # Placeholders:
+      #   Same as above
+      #   %content% - The content of the message.
+      # !!! WARNING !!!
+      # Please check if the embed contains '
+      # If it does, escape it with another ' (So it becomes '')
+      embeds: '[
+    {
+      "title": "Feedback",
+      "description": "%content%",
+      "color": 15466240,
+      "author": {
+        "name": "%player_name%",
+        "icon_url": "http://cravatar.eu/head/%player_name%/128.png"
+      }
+    }
+  ]'
+      # Whether or not the content should be added just to the embed, or be above the embed as well. Defaults to false.
+      content-in-embed-only: true

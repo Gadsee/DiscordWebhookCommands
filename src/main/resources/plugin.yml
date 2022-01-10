@@ -1,0 +1,15 @@
+name: DiscordWebhookCommands
+version: @version@
+main: me.gadse.discordwebhookcommands.DiscordWebhookCommands
+api-version: 1.16
+authors: [ Gadse ]
+description: Manage discord webhooks through in-game commands!
+
+commands:
+  discordweebhookcommand: {}
+
+permissions:
+  discordwebhookcommands.reload:
+    default: op
+  discordwebhookcommands.bypass:
+    default: op
